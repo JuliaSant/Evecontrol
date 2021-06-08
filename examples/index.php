@@ -1,5 +1,1 @@
-<?php
-
-header( 'Location: ./dashboard.html' )
-
-?>
+<?php include_once("dashboard.html")?>
