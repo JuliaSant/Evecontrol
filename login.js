@@ -24,7 +24,7 @@
     const promise = auth.createUserWithEmailAndPassword(email.value,password.value);
     //
     promise.catch(e=>alert(e.message));
-    alert("SignUp Successfully");
+    $(window.document.location).attr('href', 'http://127.0.0.1:5500/examples/dashboard.html');
   }
 
   //signIN function
@@ -32,7 +32,8 @@
     var email = document.getElementById("email");
     var password  = document.getElementById("password");
     const promise = auth.signInWithEmailAndPassword(email.value,password.value);
-    promise.catch(e=>alert(e.message))
+    promise.catch(e=>alert(e.message));
+    window.location.href='http://127.0.0.1:5500/examples/dashboard.html';
   }
 
 
@@ -40,19 +41,15 @@
 
   function signOut(){
     auth.signOut();
-    alert("SignOut Successfully from System");
+    window.location.href='http://127.0.0.1:5500/examples/login.html';
   }
 
- 
+  //active user to homepage
   firebase.auth().onAuthStateChanged((user)=>{
-    if (user) {
-      var user = firebase.auth().currentUser;
-      if(user != null){
-        var email_id = user.email;
-        console.log("Welcome User : " + email_id)
-        }
-      else {
-        console.log("Logout" )
-      }
+    if(user){
+      var email = user.email;
+      alert("Active user "+email);
+
+    }else{
     }
   })
